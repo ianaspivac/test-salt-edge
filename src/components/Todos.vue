@@ -20,22 +20,26 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref} from "vue";
 
 export default {
   name: "Todos",
   setup() {
-    const todos = ref([
-      { text: "Foo", isChecked: false },
-      { text: "Bar", isChecked: true },
-    ]);
 
+    const todos = ref([]);
     const inputTodo = ref("");
+
+    if (sessionStorage.getItem("todos")) {
+      todos.value = JSON.parse(sessionStorage.getItem("todos"))._value;
+    }
 
     const addTodo = (event) => {
       todos.value.push({ text: event, isChecked: false });
+      sessionStorage.setItem("todos", JSON.stringify(todos));
+      console.log(JSON.parse(sessionStorage.getItem("todos"))._value);
       inputTodo.value = "";
     };
+
     const removeTodo = (event) => {
       todos.value.splice(event, event);
     };
