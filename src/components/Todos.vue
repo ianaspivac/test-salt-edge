@@ -13,10 +13,10 @@
             v-for="(todo, index) in todos"
             :key="index"
             class="todos-wrap__item"
-            :class="{ checked: todo.isChecked }"
+            
           >
             <input type="checkbox" v-model="todo.isChecked" />
-            <label :for="'todo' + index">{{ todo.text }} </label>
+            <label :for="'todo' + index" :class="{ checked: todo.isChecked }">{{ todo.text }} </label>
             <button class="todos-wrap__item__remove" @click="removeTodo(index)">
               X
             </button>
@@ -68,12 +68,11 @@ export default {
 .main-container {
   margin: auto;
   display: flex;
+  width: 50vw;
   flex-direction: column;
   align-items: center;
 }
-.main-container h1 {
-  text-align: center;
-}
+
 #todos-wrap {
   border: 1px solid black;
   width: 50vw;
@@ -83,7 +82,9 @@ export default {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
+.main-container h1 {
+    align-self: flex-start;
+  }
 #todos-list {
   margin: 0;
 }
@@ -94,8 +95,7 @@ export default {
 #todos-list .todos-wrap__item {
   overflow-wrap: break-word;
   display: grid;
-  grid-template-columns: 5% 85% 10%;
-  grid-template-rows: 100%;
+  grid-template-columns: 30px 80% 10%;
 }
 #todos-list .todos-wrap__item label {
   margin-left: 10px;
@@ -115,8 +115,16 @@ input[type="text"] {
   cursor: pointer;
   justify-self: end;
 }
-ul {
-  list-style: none;
-  padding: 0;
+
+@media only screen and (max-width: 600px) {
+  #todos-wrap, .main-container h1 {
+    width: 95vw;
+  }
+  .main-container h1 {
+    align-self: auto;
+  }
+  #todos-list .todos-wrap__item {
+  grid-template-columns: 30px 65% 25%;
+}
 }
 </style>

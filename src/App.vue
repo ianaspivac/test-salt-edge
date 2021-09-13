@@ -21,4 +21,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+ul {
+  list-style: none;
+  padding: 0;
+}
 </style>
