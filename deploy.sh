@@ -1,11 +1,7 @@
+#!/usr/bin/env sh
 
-
-
-cd dist
-
+git init
 git add -A
 git commit -m 'deploy'
-
- git push -f git@github.com:ianaspivac/test-salt-edge.git main:gh-pages
-
+git push -f git@github.com:ianaspivac/test-salt-edge.git master:gh-pages
 cd -
