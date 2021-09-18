@@ -95,15 +95,14 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-
+.main-container h1{
+  margin-left:20px;
+}
 #todos-wrap {
   border-radius: 5px;
   width: 50vw;
   height: 50vh;
   font-size: 20px;
-  -webkit-box-shadow: 0px 0px 11px 5px rgba(222, 222, 222, 1);
-  -moz-box-shadow: 0px 0px 11px 5px rgba(222, 222, 222, 1);
-  box-shadow: 0px 0px 11px 5px rgba(222, 222, 222, 1);
 }
 .main-container h1 {
   align-self: flex-start;
@@ -114,7 +113,10 @@ export default {
   margin: 0;
 }
 form.todos-wrap__item {
-  border-bottom: 2px solid #81c3d7;
+  border: 2px solid #81c3d7;
+  border-radius: 5px;
+  width:90%;
+  margin:auto;
 }
 .todos-wrap__item {
   padding: 10px;
