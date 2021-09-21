@@ -20,8 +20,8 @@
             :key="index"
             class="todos-wrap__item"
           >
-            <input type="checkbox" v-model="todo.isChecked" />
-            <label :for="'todo' + index" :class="{ checked: todo.isChecked }"
+            <input type="checkbox" v-model="todo.isChecked" @change="changeValueCheck()"/>
+            <label class="'todo' + index" :class="{ checked: todo.isChecked }"
               >{{ todo.text }}
             </label>
             <button class="todos-wrap__item__remove" @click="removeTodo(index)">
@@ -44,8 +44,8 @@ export default {
     const inputTodo = ref("");
     const emptyTodo = ref(false);
 
-    if (sessionStorage.getItem("todos")) {
-      todos.value = JSON.parse(sessionStorage.getItem("todos"))._value;
+    if (localStorage.getItem("todos")) {
+      todos.value = JSON.parse(localStorage.getItem("todos"))._value;
     }
 
     const errorRemove = () => {
@@ -57,13 +57,15 @@ export default {
         return;
       }
       todos.value.push({ text: event, isChecked: false });
-      sessionStorage.setItem("todos", JSON.stringify(todos));
+      localStorage.setItem("todos", JSON.stringify(todos));
       inputTodo.value = "";
     };
-
+    const changeValueCheck =()=>{
+      localStorage.setItem("todos", JSON.stringify(todos));
+    };
     const removeTodo = (event) => {
       todos.value.splice(event, 1);
-      sessionStorage.setItem("todos", JSON.stringify(todos));
+      localStorage.setItem("todos", JSON.stringify(todos));
     };
 
     return {
@@ -73,6 +75,7 @@ export default {
       inputTodo,
       emptyTodo,
       errorRemove,
+      changeValueCheck
     };
   },
 };
